@@ -1,0 +1,63 @@
+# WPSD Live Caller Display for ESP32
+
+A compact, real-time transmission dashboard for amateur radio operators running WPSD (WPSD Hotspot / MMDVMHost). 
+This project polls your local WPSD-based hotspot server, parses active live caller metadata, and renders a clean visual display complete with user info, transmission stats, and country flag rendering.
+
+Designed primarily for 2.8" ESP32 SPI display boards like the **ESP32-2432S028R** (popularly known as the *Cheap Yellow Display* or *CYD*).
+
+<img width="1381" height="866" alt="image" src="https://github.com/user-attachments/assets/a26f89c2-97e2-4610-ab8a-429ce99e278a" />
+
+<img width="1506" height="911" alt="image" src="https://github.com/user-attachments/assets/647e4ad3-f50b-4663-b81b-3b4a6fd212e1" />
+
+---
+
+## Features
+
+* **Real-Time WPSD Monitoring:** Periodically polls the WPSD `live_caller_backend.php` endpoint for active transmissions.
+* **Country Flag Rendering:** Downloads and decodes PNG country flag icons on the fly using `PNGdec`.
+* **RadioID.net Integration:** Automatically falls back to querying `radioid.net` via HTTPS to retrieve missing DMR/Radio IDs if WPSD doesn't provide them.
+* **Smart UI Updates:** Only re-draws the display when transmission data or call duration changes to avoid screen flicker.
+* **Custom Typography:** Utilizes smooth `TFT_eSPI` FreeFonts for high readability.
+
+---
+
+## Hardware Requirements
+
+**ESP32-2432S028R** (Cheap Yellow Display / CYD). _TESTED BOARD_
+
+---
+
+## Required Libraries & Dependencies
+
+This project relies on standard ESP32 core libraries along with two key external graphics libraries.
+
+| Library | Author | Purpose | Source |
+| :--- | :--- | :--- | :--- |
+| **`TFT_eSPI`** | Bodmer | Fast SPI display driver & font rendering | [GitHub](https://github.com/Bodmer/TFT_eSPI) / Library Manager |
+| **`PNGdec`** | Larry Bank | Embedded PNG image decoder | [GitHub](https://github.com/bitbank2/PNGdec) / Library Manager |
+| **`WiFi`** | Built-in | ESP32 Wi-Fi network connection | ESP32 Arduino Core |
+| **`HTTPClient`** | Built-in | Local HTTP polling (WPSD) | ESP32 Arduino Core |
+| **`WiFiClientSecure`** | Built-in | TLS/HTTPS requests (RadioID API) | ESP32 Arduino Core |
+
+---
+
+## Configuration & Setup
+
+1. **Configure `TFT_eSPI` User Setup:**
+   Ensure your `User_Setup.h` or `User_Setup_Select.h` in the `TFT_eSPI` library folder is configured for your specific display hardware. For the **ESP32-2432S028R (CYD)**, use the standard ILI9341/ST7789 pinout settings:
+   * `TFT_MOSI = 13`
+   * `TFT_SCLK = 14`
+   * `TFT_CS = 15`
+   * `TFT_DC = 2`
+   * `TFT_RST = 12`
+   * `TFT_BL = 21`
+
+2. **Update Wi-Fi & WPSD Network Details:**
+   Open the `.ino` sketch and update the following configuration lines:
+   ```cpp
+   const char* ssid     = "YOUR_WIFI_SSID";
+   const char* password = "YOUR_WIFI_PASSWORD";
+
+   // Replace 192.168.1.50 with your WPSD hotspot IP address
+   const char* hostUrl   = "[http://123.123.123.123](http://123.123.123.123)";
+   const char* serverUrl = "[http://122.123.123.123/mmdvmhost/live_caller_backend.php](http://123.123.123.123/mmdvmhost/live_caller_backend.php)";
