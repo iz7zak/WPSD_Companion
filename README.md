@@ -7,8 +7,9 @@ This project polls your local WPSD-based hotspot server, parses active live call
 
 Designed primarily for 2.8" ESP32 SPI display boards like the **ESP32-2432S028R** (popularly known as the *Cheap Yellow Display* or *CYD*).
 
-<img width="2016" height="1512" alt="IMG_1041" src="https://github.com/user-attachments/assets/3413390a-8512-4f8d-8cbb-1a3b8e38e078" />
-<img width="1381" height="866" alt="image" src="https://github.com/user-attachments/assets/a26f89c2-97e2-4610-ab8a-429ce99e278a" />
+<img width="2016" height="1512" alt="IMG_1041" src="https://github.com/user-attachments/assets/158b5fc0-4a0c-43d8-9c7f-f196ff1647db" />
+<img width="2016" height="1512" alt="IMG_1040" src="https://github.com/user-attachments/assets/c81b974c-5138-4eca-9e23-6d44444c7f74" />
+
 
 ---
 
