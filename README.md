@@ -1,13 +1,14 @@
 # WPSD Live Caller Display for ESP32
 
-A compact, real-time transmission dashboard for amateur radio operators running WPSD (WPSD Hotspot / MMDVMHost). 
+#  READ CHANGELOG FOR V2 IMPROVEMENTS AND CHANGES 
+
+A wireless compact, real-time transmission dashboard for amateur radio operators running WPSD (WPSD Hotspot / MMDVMHost). 
 This project polls your local WPSD-based hotspot server, parses active live caller metadata, and renders a clean visual display complete with user info, transmission stats, and country flag rendering.
 
 Designed primarily for 2.8" ESP32 SPI display boards like the **ESP32-2432S028R** (popularly known as the *Cheap Yellow Display* or *CYD*).
 
+<img width="2016" height="1512" alt="IMG_1041" src="https://github.com/user-attachments/assets/3413390a-8512-4f8d-8cbb-1a3b8e38e078" />
 <img width="1381" height="866" alt="image" src="https://github.com/user-attachments/assets/a26f89c2-97e2-4610-ab8a-429ce99e278a" />
-
-<img width="1506" height="911" alt="image" src="https://github.com/user-attachments/assets/647e4ad3-f50b-4663-b81b-3b4a6fd212e1" />
 
 ---
 
